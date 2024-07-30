@@ -47,4 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, 400);
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const toolItems = document.querySelectorAll('.tool-item');
+
+    const observerOptions = {
+      root: null, // Use the viewport as the root
+      threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Stop observing after it becomes visible
+        }
+      });
+    }, observerOptions);
+
+    toolItems.forEach(item => {
+      observer.observe(item);
+    });
+  });
   

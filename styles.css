@@ -3,38 +3,64 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: 'Bebas Neue', sans-serif; 
+  scroll-behavior: smooth;
 }
 
 /* Navbar Styling */
 .navbar {
-  background-color: #343a40 !important; 
-  color: white !important; 
+  background-color: #28282B !important;
+  color: white !important;
+  transition: background-color 0.3s ease;
 }
 
-.navbar .navbar-brand,
+.navbar:hover {
+  background-color: #333 !important;
+}
+
+.navbar .navbar-brand {
+  color: white !important;
+  font-weight: bold !important;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar .navbar-brand:hover {
+  transform: scale(1.05);
+  color: #f8f9fa !important;
+}
+
 .navbar .nav-link {
-  color: white !important; 
-  font-weight: bold !important; 
+  color: white !important;
+  font-weight: bold !important;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .navbar .nav-link:hover {
-  color: #f8f9fa !important; 
+  color: #c5a61d !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
 }
 
 .navbar-toggler-icon {
-  background-color: white !important; 
+  background-color: white !important;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+  background-color: #007bff !important;
 }
 
 .navbar {
-  position: sticky !important; 
-  top: 0 !important; 
-  z-index: 1030 !important; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
 }
 
 /* Background Image */
 .background-image {
   background-image: url('images/me.jpg'); 
-  height: 90vh; 
+  height: 100vh; 
   width: 100%; 
   background-position: center;
   background-repeat: no-repeat;
@@ -110,6 +136,7 @@ body, html {
 }
 
 .project-item {
+  
   background-color: #333; 
   border-radius: 8px;
   overflow: hidden;
@@ -150,12 +177,20 @@ body, html {
 }
 
 .tool-item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 1s;
   padding: 20px;
   border-radius: 8px;
   background-color: #D1D9E0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px; 
+}
+
+.tool-item.visible {
+  opacity: 1;
+  transform: translateY(0); /* Move to the original position */
 }
 
 .tool-item img {
